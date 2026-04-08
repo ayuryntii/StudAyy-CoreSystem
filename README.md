@@ -1,4 +1,4 @@
-# <p align="center">⚡ STUDAYY : CORE_SYSTEM_V2.5 ⚡</p>
+# <p align="center">⚡ STUDAYY : CORE_SYSTEM_V2.5 by Ayu Rianti ⚡</p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/VERSION-2.5.0-00ffff?style=for-the-badge&logo=probot&logoColor=00ffff" alt="Version">
@@ -6,15 +6,26 @@
   <img src="https://img.shields.io/badge/SECURITY-LOCAL_SYNC-00ff00?style=for-the-badge&logo=esotericsoftware&logoColor=00ff00" alt="Security">
 </p>
 
+<p align="center">
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JS">
+  <img src="https://img.shields.io/badge/Font_Awesome-33D1FF?style=flat-square&logo=fontawesome&logoColor=white" alt="FontAwesome">
+  <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=netlify&logoColor=white" alt="Netlify">
+</p>
+
 ---
 
 ## 🇮🇩 Tentang Aplikasi (Indonesian)
-*Web **studayy** adalah platform manajemen tugas dan materi belajar personal yang dibangun dengan estetika futuristik Cyberpunk/HUD. Berbeda dengan aplikasi manajemen tugas biasa, **studayy** memprioritaskan privasi penuh melalui teknologi **Local IndexedDB**—seluruh data Anda (tugas, catatan, hingga foto kamera) terenkripsi secara lokal di browser Anda, bukan di server cloud pihak ketiga.*
+*Web **studayy** adalah platform manajemen tugas dan materi belajar personal yang dikembangkan oleh **Ayu Rianti** dengan estetika futuristik Cyberpunk/HUD. Berbeda dengan aplikasi manajemen tugas biasa, **studayy** memprioritaskan privasi penuh melalui teknologi **Local IndexedDB**—seluruh data Anda tetap 100% privat dan tersimpan secara lokal di browser Anda.*
 
 ---
 
 ## 🌌 Project Overview
-**Studayy** is a high-fidelity Single Page Application (SPA) designed for students who demand a professional, immersive, and secure environment to organize their academic life. It transforms mundane task management into a "System Operator" experience, featuring real-time system stats, a side-drawer HUD navigation, and specialized data modules.
+**Studayy**, engineered by **Ayu Rianti**, is a high-fidelity Single Page Application (SPA) designed for students who demand a professional, immersive, and secure environment to organize their academic life. It transforms mundane task management into a "System Operator" experience, featuring real-time system stats and a specialized HUD navigation.
+
+### 🍦 Why "Vanilla" JavaScript?
+The term **Vanilla JavaScript** refers to using the pure, native power of JavaScript without relying on heavy external libraries or frameworks. This demonstrates a deep understanding of core web technologies, ensuring that **Ayu Rianti's studayy** remains incredibly fast, lightweight, and efficient for the user.
 
 ### 🛠️ Core Modules
 

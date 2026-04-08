@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayyStudy: Task & Material Manager</title>
+    <!-- Google Fonts: Space Grotesk & Fira Code -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Fira+Code:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Cropper.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Overlay for mobile menu -->
+    <div class="menu-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <div class="logo-container cyber-logo">
+                <img src="./logo.jpg" alt="Logo" class="nav-logo-img">
+            </div>
+            <div class="brand-group">
+                <span class="brand-text">studayy</span>
+                <span class="brand-sys">[CORE_OS_v2.5]</span>
+            </div>
+        </div>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" data-route="home"><i class="fas fa-terminal"></i> HOME</a></li>
+            <li><a href="#" data-route="tugas"><i class="fas fa-database"></i> DATA_VAULT</a></li>
+            <li><a href="#" data-route="rangkuman"><i class="fas fa-book-open"></i> ARCHIVE</a></li>
+            <li><a href="#" data-route="upload"><i class="fas fa-upload"></i> UPLINK</a></li>
+            <li><a href="#" data-route="camera"><i class="fas fa-camera"></i> CAMERA</a></li>
+            <li><a href="#" data-route="about"><i class="fas fa-user-shield"></i> ABOUT</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main id="app-content">
+        <!-- SPA content injected here -->
+    </main>
+
+    <!-- Modal Container -->
+    <div id="modal-container" class="modal-overlay hidden">
+        <div class="modal-content">
+            <button class="modal-close"><i class="fas fa-times"></i></button>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <!-- =============== TEMPLATES =============== -->
+
+    <!-- 1. Home Template -->
+    <template id="tpl-home">
+        <section class="home-section animate-fade">
+            <!-- Top: System Stats -->
+            <div class="system-stats-bar">
+                <div class="stat-item"><span class="stat-label">STORAGE:</span> <span class="stat-val">LOCAL_SYNC</span></div>
+                <div class="stat-item"><span class="stat-label">CPU_LOAD:</span> <span class="stat-val">OPTIMAL</span></div>
+                <div class="stat-item"><span class="stat-label">MEM_SYNC:</span> <span class="stat-val">STABLE</span></div>
+                <div class="stat-item"><span class="stat-label">UPTIME:</span> <span class="stat-val" id="sys-uptime">00:00:00</span></div>
+            </div>
+
+            <div class="hero-content">
+                <div class="hero-terminal">
+                    <p class="term-line">> SYSTEM_BOOT_COMPLETE</p>
+                    <p class="term-line">> OPERATOR: AYU_RIANTI</p>
+                    <p class="term-line">> STATUS: ONLINE / ACTIVE</p>
+                </div>
+                <h1 class="gradient-text cyber-title">YOUR_SPACE. <span class="accent-glow">STUDAYY.</span> <span
+                        class="cursor-blink">|</span></h1>
+                <p class="hero-subtitle"><b>Architecting</b> scalable digital workflows and deploying advanced
+                    knowledge modules. Optimized for high-performance learning and data-driven material management.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn btn-cyber-primary" onclick="app.navigate('tugas')">
+                        <i class="fas fa-terminal"></i> EXECUTE_MODULES
+                    </button>
+                    <button class="btn btn-cyber-secondary" onclick="app.navigate('rangkuman')">
+                        <i class="fas fa-shield-halved"></i> VIEW_CREDENTIALS
+                    </button>
+                </div>
+            </div>
+        </section>
+    </template>
+
+    <!-- 2. Tugas Template -->
+    <template id="tpl-tugas">
+        <section class="tugas-section page-section theme-blue animate-fade">
+            <div class="header-action">
+                <div class="page-title-group">
+                    <i class="fas fa-database title-icon" style="color: var(--accent-cyan);"></i>
+                    <div>
+                        <h2>DATA_VAULT <span class="brand-sys">[LOCAL_NODE]</span></h2>
+                        <p class="text-muted">MANAGE_ALL_ENCRYPTED_DATA_PACKETS</p>
+                    </div>
+                </div>
+                <button class="btn btn-cyber-primary" onclick="app.navigate('upload')"><i class="fas fa-plus"></i>
+                    NEW_UPLINK</button>
+            </div>
+            <div class="cyber-label-tag">SYS_MODULE: TASK_CHAMBER</div>
+            <div class="modern-filters">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="search-tugas" placeholder="Cari tugas...">
+                </div>
+                <div class="filter-box">
+                    <i class="fas fa-filter"></i>
+                    <select id="filter-kategori-tugas">
+                        <option value="all">Semua Kategori</option>
+                    </select>
+                </div>
+            </div>
+            <div class="card-list" id="tugas-list">
+                <!-- Tugas cards rendered here -->
+            </div>
+        </section>
+    </template>
+
+    <!-- 3. Rangkuman Template -->
+    <template id="tpl-rangkuman">
+        <section class="rangkuman-section page-section theme-pink animate-fade">
+            <div class="header-action">
+                <div class="page-title-group">
+                    <i class="fas fa-book-open title-icon" style="color: var(--accent-green);"></i>
+                    <div>
+                        <h2>RANGKUMAN_MATERI <span class="brand-sys">[ACTIVE]</span></h2>
+                        <p class="text-muted">ACCESS_CORE_KNOWLEDGE_ARCHIVE</p>
+                    </div>
+                </div>
+                <button class="btn btn-cyber-secondary" onclick="app.navigate('upload', 'rangkuman')"><i
+                        class="fas fa-plus"></i> NEW_ARCHIVE</button>
+            </div>
+            <div class="cyber-label-tag">SYS_MODULE: MATERIAL_DB</div>
+            <div class="grid-layout" id="rangkuman-list">
+                <!-- Rangkuman cards rendered here -->
+            </div>
+        </section>
+    </template>
+
+    <!-- 4. Upload Template -->
+    <template id="tpl-upload">
+        <section class="upload-section page-section theme-neutral animate-fade">
+            <h2>Upload File / Input Rangkuman</h2>
+            <form id="upload-form" class="modern-form">
+                <div class="form-group">
+                    <label>Tipe Entri</label>
+                    <div class="radio-group">
+                        <label><input type="radio" name="entry_type" value="tugas" checked> Tugas</label>
+                        <label><input type="radio" name="entry_type" value="rangkuman"> Rangkuman Materi</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Judul</label>
+                    <input type="text" id="input-judul" required placeholder="Masukkan judul...">
+                </div>
+
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <input type="text" id="input-kategori" required
+                        placeholder="Contoh: Pemrograman Web, Big Data, dsb...">
+                </div>
+
+                <div class="form-group">
+                    <label>Tanggal</label>
+                    <input type="date" id="input-tanggal" required>
+                </div>
+
+                <!-- Untuk Tugas: Upload File -->
+                <div id="upload-file-group" class="form-group">
+                    <label>Upload File (PDF / Gambar)</label>
+                    <div class="drop-zone" id="drop-zone">
+                        <span class="drop-zone__prompt"><i class="fas fa-cloud-upload-alt fa-3x"></i><br>Drop file di
+                            sini atau klik untuk upload</span>
+                        <input type="file" name="file" id="input-file" class="drop-zone__input"
+                            accept="image/jpeg, image/png, application/pdf">
+                    </div>
+                    <div id="file-preview" class="file-preview hidden"></div>
+                </div>
+
+                <!-- Untuk Materi: Input Text -->
+                <div id="input-text-group" class="form-group hidden">
+                    <label>Isi Rangkuman Materi</label>
+                    <textarea id="input-deskripsi" rows="8" placeholder="Ketik rangkuman materi di sini..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-full">Simpan</button>
+            </form>
+        </section>
+    </template>
+
+    <!-- 5. Camera Template -->
+    <template id="tpl-camera">
+        <section class="camera-section page-section animate-fade">
+            <h2>Kamera & Edit Foto</h2>
+
+            <div id="camera-controls">
+                <button class="btn btn-primary" id="btn-start-camera"><i class="fas fa-video"></i> Aktifkan
+                    Kamera</button>
+            </div>
+
+            <div id="camera-view" class="hidden video-container">
+                <video id="videoElement" autoplay playsinline></video>
+                <button class="btn btn-capture" id="btn-capture"><i class="fas fa-camera"></i> Ambil Foto</button>
+            </div>
+
+            <div id="edit-view" class="hidden">
+                <div class="image-workspace">
+                    <img id="imageToEdit" src="">
+                </div>
+
+                <div class="edit-controls modern-form" style="text-align: center;">
+                    <div class="cyber-label-tag" style="position: static; margin-bottom: 1rem;">SYS:
+                        NATURAL_COLOR_OPTIMIZED</div>
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary" id="btn-retake">Foto Ulang</button>
+                        <button class="btn btn-primary btn-blue" id="btn-save-photo">Simpan ke Galeri</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hidden canvas for processing -->
+            <canvas id="canvasElement" class="hidden"></canvas>
+        </section>
+    </template>
+
+    <!-- 6. Gallery Template -->
+    <template id="tpl-gallery">
+        <section class="gallery-section page-section theme-neutral animate-fade">
+            <h2>Galeri Foto</h2>
+            <div class="gallery-grid" id="gallery-grid">
+                <!-- Gallery items -->
+            </div>
+        </section>
+    </template>
+
+    <!-- 7. About Template -->
+    <template id="tpl-about">
+        <section class="about-section page-section animate-fade">
+            <div class="about-card hud-module">
+                <div class="cyber-image-frame">
+                    <div class="frame-label">AUTH_SYNC: OWNER</div>
+                    <img src="./logo.jpg" alt="Profil" class="profile-img"
+                        onerror="this.src='https://via.placeholder.com/200/000/00ffff?text=AYU_RIANTI'">
+                    <div class="corner-acc c-tl"></div>
+                    <div class="corner-acc c-tr"></div>
+                    <div class="corner-acc c-bl"></div>
+                    <div class="corner-acc c-br"></div>
+                </div>
+                <h2>UNSAFE_ACCESS_GRANTED <span class="brand-sys">[ADMIN]</span></h2>
+                <div class="hud-data-block">
+                    <p class="data-line">> PROTOCOL: studayy_v2.5</p>
+                    <p class="data-line">> STATUS: ONLINE / PERSISTENT</p>
+                    <p class="data-line">> ENCRYPTION: LOCAL_ONLY</p>
+                </div>
+                <div class="about-content" style="text-align: justify; color: var(--text-muted);">
+                    <p>Web <b>studayy</b> ini dirancang sebagai pusat data personal untuk mengelola tugas dan materi
+                        belajar dengan standar keamanan <b>Local IndexedDB</b>. Semua data tetap privat di browsermu.
+                    </p>
+                </div>
+                <div class="social-links-hud" style="margin-top: 2rem; display: flex; gap: 1.5rem;">
+                    <a href="https://instagram.com/ayuryntii_" target="_blank"
+                        style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;"><i
+                            class="fab fa-instagram"></i> INSTAGRAM</a>
+                    <a href="https://github.com/ayuryntii" target="_blank"
+                        style="color: var(--accent-cyan); text-decoration: none; font-weight: 700;"><i
+                            class="fab fa-github"></i> GITHUB</a>
+                </div>
+            </div>
+            <div class="cyber-label-tag">SYS_MODULE: ABOUT_PROTOCOL</div>
+        </section>
+    </template>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script>
+
+    <script src="js/db.js"></script>
+    <script src="js/camera.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
